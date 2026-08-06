@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Golden Glades Middle</title>
   <style>
-    /* Global Reset & Base Styles */
+    /* Base Styles */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,24 +14,21 @@
 
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #121212;
-      color: #ffffff;
+      background-color: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.6;
     }
 
-    /* Top Bar Container */
+    /* Top Navigation Bar */
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: #1a1a1a;
-      background-image: radial-gradient(#333 10%, transparent 11%);
-      background-size: 10px 10px; /* Optional halftone pattern effect */
       color: #ffffff;
-      padding: 12px 30px;
-      border-bottom: 1px solid #2a2a2a;
+      padding: 12px 40px;
     }
 
-    /* Left Side: Logo & School Title */
     .topbar-left {
       display: flex;
       align-items: center;
@@ -39,21 +36,18 @@
     }
 
     .site-logo {
-      height: 32px;
-      width: auto;
+      height: 28px;
     }
 
     .site-title {
       font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: 0.5px;
+      font-size: 1.1rem;
     }
 
-    /* Right Side: Navigation Links & Controls */
     .topbar-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
     }
 
     .nav-link, .dropdown-btn {
@@ -66,35 +60,16 @@
       cursor: pointer;
       padding: 6px 12px;
       border-radius: 2px;
-      transition: background-color 0.2s ease;
     }
 
-    .nav-link:hover, .dropdown-btn:hover {
-      background-color: rgba(255, 255, 255, 0.12);
-    }
-
-    /* Active Page Indicator */
     .nav-link.active {
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* Dropdown Component */
     .dropdown {
       position: relative;
-      display: inline-block;
     }
 
-    .dropdown-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .arrow {
-      font-size: 0.65rem;
-    }
-
-    /* White Floating Menu Box */
     .dropdown-content {
       display: none;
       position: absolute;
@@ -102,65 +77,207 @@
       left: 50%;
       transform: translateX(-50%);
       background-color: #f4f4f4;
-      min-width: 190px;
-      box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.35);
-      padding: 6px 0;
-      border-radius: 2px;
+      min-width: 180px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
       z-index: 1000;
+      padding: 6px 0;
     }
 
     .dropdown-content a {
-      color: #222222;
-      padding: 10px 16px;
+      color: #222;
+      padding: 8px 16px;
       text-decoration: none;
       display: block;
-      font-size: 0.88rem;
       text-align: center;
-      font-weight: 500;
-      transition: background-color 0.15s ease;
+      font-size: 0.88rem;
     }
 
     .dropdown-content a:hover {
-      background-color: #e2e2e2;
+      background-color: #ddd;
     }
 
-    /* Show dropdown on hover */
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
-    /* Search Button Icon */
     .search-btn {
       background: none;
       border: none;
-      color: #ffffff;
-      font-size: 1.1rem;
+      color: #fff;
+      font-size: 1rem;
       cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .search-btn:hover {
-      background-color: rgba(255, 255, 255, 0.12);
+    /* Hero Section */
+    .hero-container {
+      background-color: #0b1d3a;
+      color: #ffffff;
+      padding: 40px 60px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: #0f284e;
+      border-radius: 6px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #1a3d70;
+      width: 100%;
+      padding-bottom: 8px;
+    }
+
+    .card-image {
+      max-width: 100%;
+      border-radius: 4px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      font-size: 1.5rem;
+    }
+
+    .account-box {
+      background-color: #163666;
+      border-radius: 6px;
+      padding: 24px 16px;
+      margin-top: auto;
+      margin-bottom: auto;
+      width: 100%;
+    }
+
+    .btn-sign-in {
+      background-color: #1a73e8;
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+
+    /* Section Headers */
+    .section-title {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin: 50px 0 20px;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 2px;
+      background-color: #1a1a1a;
+      margin: 8px auto 0;
+    }
+
+    /* News & Announcements */
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+    }
+
+    .news-item h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .news-item p {
+      font-size: 0.92rem;
+      color: #444;
+    }
+
+    /* Media Grid */
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+    }
+
+    .media-box {
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .media-box img {
+      width: 100%;
+      display: block;
+    }
+
+    .media-caption {
+      text-align: center;
+      padding: 12px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0b1d3a;
+      color: #ffffff;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-logo {
+      height: 48px;
+      margin-bottom: 12px;
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: #cccccc;
     }
   </style>
 </head>
 <body>
 
+  <!-- Top Bar -->
   <header class="topbar">
     <div class="topbar-left">
-      <img src="logo.png" alt="Golden Glades Middle Logo" class="site-logo">
+      <img src="logo.png" alt="Logo" class="site-logo">
       <span class="site-title">Golden Glades Middle</span>
     </div>
-    
     <nav class="topbar-right">
-      <a href="index.html" class="nav-link active">Home</a>
-      
+      <a href="#" class="nav-link active">Home</a>
       <div class="dropdown">
-        <button class="dropdown-btn">About <span class="arrow">∨</span></button>
+        <button class="dropdown-btn">About ∨</button>
         <div class="dropdown-content">
           <a href="#">Administrative Team</a>
           <a href="#">Mission and Vision</a>
@@ -169,13 +286,82 @@
           <a href="#">Staff Handbook</a>
         </div>
       </div>
-      
       <a href="#" class="nav-link">Staff Directory</a>
       <a href="#" class="nav-link">Careers</a>
       <a href="#" class="nav-link">Contact Us</a>
-      <button class="search-btn" aria-label="Search">🔍</button>
+      <button class="search-btn">🔍</button>
     </nav>
   </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-container">
+    <div class="card-grid">
+      <!-- Spotlight -->
+      <div class="card">
+        <div class="card-title">Spotlight</div>
+        <img src="calendar.png" alt="June 2026 Calendar" class="card-image">
+      </div>
+      <!-- Follow Us -->
+      <div class="card">
+        <div class="card-title">Follow Us</div>
+        <img src="logo.png" alt="GGM Crest" class="card-image" style="width: 140px; margin-top: 20px;">
+        <div class="social-icons">
+          <span>📷</span>
+          <span>💬</span>
+        </div>
+      </div>
+      <!-- Upcoming Events -->
+      <div class="card">
+        <div class="card-title">Upcoming Events</div>
+        <div class="account-box">
+          <div style="font-size: 2rem; margin-bottom: 8px;">G</div>
+          <p style="font-weight: 600; font-size: 0.9rem;">Sign in to your Google Account</p>
+          <p style="font-size: 0.75rem; color: #aaa; margin-top: 4px;">You must sign in to view this content</p>
+          <button class="btn-sign-in">Sign in</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News & Announcements Section -->
+  <section>
+    <h2 class="section-title">News and Announcements</h2>
+    <div class="news-grid">
+      <div class="news-item">
+        <h3>Campus Renovations in Progress</h3>
+        <p>We are currently undergoing campus-wide renovations to enhance the learning environment for our students. Please stay tuned to our official channels for updates regarding our official opening date.</p>
+      </div>
+      <div class="news-item">
+        <h3>Summer is Officially Here</h3>
+        <p>We are excited to offer engaging summer programs at Golden Glades Middle! Our summer sessions are designed to be hands-on, supportive, and fun. It's the perfect way to build confidence and ensure a seamless transition into the fall semester!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Media Section -->
+  <section>
+    <h2 class="section-title">Featured Media</h2>
+    <div class="media-grid">
+      <div class="media-box">
+        <img src="gameplay.png" alt="Roblox School Gameplay">
+        <div class="media-caption">School Gallery</div>
+      </div>
+      <div class="media-box">
+        <div style="padding: 20px; font-size: 0.85rem; color: #333;">
+          <strong>Golden Glades Middle</strong> (@ggmroblox)<br><br>
+          Welcome to Golden Glades Middle! 🏫 We are a middle school in Roblox dedicated to fostering academic growth and community. We serve students in grades 6, 7, 8, and SPED.<br><br>
+          <em>"Where Future Leaders Drive."</em>
+        </div>
+        <div class="media-caption">Recent Twitter Post</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <img src="logo.png" alt="Golden Glades Middle Crest" class="footer-logo">
+    <p class="footer-text">Copyright © 2026 Golden Glades Middle School</p>
+  </footer>
 
 </body>
 </html>
