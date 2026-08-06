@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>District Portal Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f9; }
+    nav { background: #003366; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .container { padding: 2rem; }
+    .panel { display: none; background: white; padding: 1.5rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+    .btn-logout { background: #dc3545; color: white; border: none; padding: .5rem 1rem; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .btn-logout:hover { background: #c82333; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h2 style="margin:0;">Golden Glades Middle Portal</h2>
+    <div>
+      <span id="userInfo" style="margin-right: 15px; font-weight: bold;"></span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Student Panel (Group Rank 0 - 52) -->
+    <div id="studentPanel" class="panel">
+      <h3>🎓 Student Access</h3>
+      <p>Welcome to the Student Portal. Access your schedule, class announcements, and student resources.</p>
+    </div>
+
+    <!-- Staff Panel (Group Rank 65 - 131) -->
+    <div id="staffPanel" class="panel">
+      <h3>🍎 Staff Access</h3>
+      <p>Welcome to the Staff Portal. Access lesson plans, gradebooks, rosters, and staff documentation.</p>
+    </div>
+
+    <!-- Admin Panel (Group Rank 140 - 255) -->
+    <div id="adminPanel" class="panel">
+      <h3>⚙️ Admin Control Panel</h3>
+      <p>Welcome to the Administrative Portal. Manage district configurations, system logs, and operational controls.</p>
+    </div>
+  </div>
+
+  <script>
+    // 1. Extract URL parameters passed by the Node.js backend redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    const tokenParam = urlParams.get('token');
+    const roleParam = urlParams.get('role');
+    const usernameParam = urlParams.get('username');
+
+    // 2. Save session details to localStorage and clean up the URL
+    if (tokenParam) {
+      localStorage.setItem('portalToken', tokenParam);
+      localStorage.setItem('userRole', roleParam);
+      localStorage.setItem('username', usernameParam);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // 3. Retrieve stored session variables
+    const token = localStorage.getItem('portalToken');
+    const role = localStorage.getItem('userRole');
+    const username = localStorage.getItem('username');
+
+    // 4. Redirect unauthenticated visitors back to login page
+    if (!token) {
+      window.location.href = 'login.html';
+    } else {
+      document.getElementById('userInfo').innerText = `${username} (${role})`;
+
+      // 5. Render panels matching the assigned Roblox group rank role
+      if (role === 'Student') {
+        document.getElementById('studentPanel').style.display = 'block';
+      } else if (role === 'Staff') {
+        document.getElementById('studentPanel').style.display = 'block';
+        document.getElementById('staffPanel').style.display = 'block';
+      } else if (role === 'Admin') {
+        document.getElementById('studentPanel').style.display = 'block';
+        document.getElementById('staffPanel').style.display = 'block';
+        document.getElementById('adminPanel').style.display = 'block';
+      }
+    }
+
+    // Logout session clearer
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
